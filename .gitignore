@@ -12,3 +12,7 @@ desktop.ini
 # Node / Scratch
 node_modules/
 *.log
+
+# Astro
+dist/
+.astro/

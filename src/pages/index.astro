@@ -1,0 +1,180 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { person, intro, now, projects, experience, teaching, education, certifications } from "../data/site";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const u = (p: string) => `${base}/${p}`;
+const year = new Date().getFullYear();
+---
+<Base
+  title="Tarun Joseph · AI Engineer"
+  description="Tarun Joseph builds AI agents and the monitoring that keeps them safe. MEng at the University of Toronto, runtime agent security at SafeAlign AI through the Vector Institute."
+>
+  <Header />
+  <main id="top">
+    <!-- Intro -->
+    <section class="mx-auto max-w-5xl px-5 pt-16 pb-20 sm:px-8 md:pt-24">
+      <div class="grid items-center gap-12 md:grid-cols-12">
+        <div class="md:col-span-8">
+          <p class="text-sm text-muted">{person.role} · {person.location}</p>
+          <h1 class="mt-4 font-serif text-[2.6rem] leading-[1.08] font-medium tracking-tight text-balance text-ink sm:text-6xl">
+            {intro.headline}
+          </h1>
+          <div class="mt-7 max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
+            {intro.paragraphs.map((p) => <p>{p}</p>)}
+          </div>
+          <p class="mt-6 inline-flex items-center gap-2 rounded-full bg-accent-soft px-3.5 py-1.5 text-sm text-ink">
+            <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+            {intro.lookingFor}
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href={u(person.resume)} class="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper no-underline transition-colors hover:bg-accent">Resume (PDF)</a>
+            <a href={u(person.cv)} class="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink no-underline transition-colors hover:border-ink">Full CV (PDF)</a>
+            <a href={`mailto:${person.email}`} class="px-2 py-2.5 text-sm font-medium text-accent underline decoration-accent/40 hover:decoration-accent">{person.email}</a>
+          </div>
+        </div>
+        <div class="md:col-span-4">
+          <img
+            src={u("assets/images/tarun_portrait.jpg")}
+            alt="Tarun Joseph"
+            width="600"
+            height="800"
+            class="mx-auto aspect-[3/4] w-56 rounded-lg border border-line object-cover sm:w-64 md:w-full"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Now -->
+    <section class="border-y border-line bg-card">
+      <div class="mx-auto max-w-5xl px-5 py-12 sm:px-8">
+        <h2 class="text-xs font-medium uppercase tracking-[0.14em] text-muted">What I'm working on now</h2>
+        <div class="mt-6 grid gap-8 md:grid-cols-3">
+          {now.map((n) => (
+            <div>
+              <h3 class="font-serif text-xl font-medium text-ink">{n.title}</h3>
+              <p class="mt-1 text-sm text-accent">{n.where}</p>
+              <p class="mt-2 leading-relaxed text-muted">{n.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Work -->
+    <section id="work" class="mx-auto max-w-5xl px-5 py-20 sm:px-8 md:py-28">
+      <div class="max-w-2xl">
+        <h2 class="font-serif text-4xl font-medium tracking-tight text-ink">Projects you can try</h2>
+        <p class="mt-3 text-lg leading-relaxed text-muted">Things I have built that are live today. Each one opens in a new tab.</p>
+      </div>
+      <div class="mt-14 space-y-20 md:space-y-28">
+        {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="border-t border-line">
+      <div class="mx-auto max-w-5xl px-5 py-20 sm:px-8 md:py-24">
+        <h2 class="font-serif text-4xl font-medium tracking-tight text-ink">Experience</h2>
+        <ol class="mt-12 space-y-12">
+          {experience.map((j) => (
+            <li class="grid gap-3 md:grid-cols-12 md:gap-8">
+              <div class="md:col-span-3">
+                <p class="text-sm text-muted tabular-nums">{j.period}</p>
+              </div>
+              <div class="md:col-span-9">
+                <h3 class="text-lg font-semibold text-ink">{j.role}</h3>
+                <p class="text-sm text-muted">{j.org}</p>
+                <ul class="mt-4 space-y-2.5 leading-relaxed text-muted">
+                  {j.points.map((pt) => <li class="relative pl-5 before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-muted/60">{pt}</li>)}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Background -->
+    <section id="background" class="border-t border-line bg-card">
+      <div class="mx-auto max-w-5xl px-5 py-20 sm:px-8 md:py-24">
+        <h2 class="font-serif text-4xl font-medium tracking-tight text-ink">Background</h2>
+
+        <div class="mt-12 grid gap-12 md:grid-cols-2">
+          <div>
+            <h3 class="text-xs font-medium uppercase tracking-[0.14em] text-muted">Education</h3>
+            <div class="mt-5 space-y-8">
+              {education.map((e) => (
+                <div class="flex gap-4">
+                  <span class="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-md border border-line bg-white p-1.5">
+                    <img src={u(e.logo)} alt="" class="max-h-full max-w-full object-contain" loading="lazy" />
+                  </span>
+                  <div>
+                    <p class="font-semibold text-ink">{e.degree}</p>
+                    <p class="text-sm text-muted">{e.school} · {e.period}</p>
+                    <p class="mt-2 text-sm leading-relaxed text-ink">{e.detail}</p>
+                    <p class="mt-1 text-sm leading-relaxed text-muted">{e.courses}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <h3 class="mt-12 text-xs font-medium uppercase tracking-[0.14em] text-muted">Certifications</h3>
+            <ul class="mt-5 divide-y divide-line border-y border-line text-sm">
+              {certifications.map((c) => (
+                <li class="flex items-baseline justify-between gap-4 py-2.5">
+                  <span class="text-ink">{c.name} <span class="text-muted">· {c.issuer}</span></span>
+                  <span class="shrink-0 text-muted tabular-nums">{c.year}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-xs font-medium uppercase tracking-[0.14em] text-muted">Teaching and community</h3>
+            <ul class="mt-5 space-y-6">
+              {teaching.map((t) => (
+                <li>
+                  <div class="flex items-baseline justify-between gap-4">
+                    <p class="font-semibold text-ink">{t.role}</p>
+                    <span class="shrink-0 text-sm text-muted tabular-nums">{t.period}</span>
+                  </div>
+                  <p class="text-sm text-accent">{t.org}</p>
+                  <p class="mt-1 text-sm leading-relaxed text-muted">{t.text}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="border-t border-line">
+      <div class="mx-auto max-w-5xl px-5 py-20 sm:px-8 md:py-28">
+        <div class="max-w-2xl">
+          <h2 class="font-serif text-4xl font-medium tracking-tight text-ink sm:text-5xl">Let's talk.</h2>
+          <p class="mt-4 text-lg leading-relaxed text-muted">
+            I'm happy to hear about AI engineering roles, or to talk about agent monitoring and evaluation. Email is the quickest way to reach me.
+          </p>
+          <a href={`mailto:${person.email}`} class="mt-8 inline-block font-serif text-2xl text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent sm:text-3xl">{person.email}</a>
+          <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="text-ink underline decoration-line hover:decoration-ink">LinkedIn</a>
+            <a href={person.github} target="_blank" rel="noopener noreferrer" class="text-ink underline decoration-line hover:decoration-ink">GitHub</a>
+            <a href={person.huggingface} target="_blank" rel="noopener noreferrer" class="text-ink underline decoration-line hover:decoration-ink">Hugging Face</a>
+            <a href={u(person.resume)} class="text-ink underline decoration-line hover:decoration-ink">Resume</a>
+            <a href={u(person.cv)} class="text-ink underline decoration-line hover:decoration-ink">CV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line">
+    <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-5 py-8 text-sm text-muted sm:px-8">
+      <p>© {year} Tarun Joseph · Toronto</p>
+      <a href="#top" class="text-muted no-underline hover:text-ink">Back to top ↑</a>
+    </div>
+  </footer>
+</Base>

@@ -1,0 +1,62 @@
+---
+import "../styles/global.css";
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const ogImage = new URL(`${base}/assets/images/tarun_portrait.jpg`, Astro.site).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="theme-color" content="#faf9f6" />
+    <link rel="icon" href={`${base}/assets/logo/favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href={`${base}/assets/logo/favicon-32.png`} sizes="32x32" />
+    <link rel="apple-touch-icon" href={`${base}/assets/logo/apple-touch-icon.png`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem("tj_theme"); } catch (e) {}
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen">
+    <slot />
+    <script is:inline>
+      document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          document.documentElement.setAttribute("data-theme", next);
+          try { localStorage.setItem("tj_theme", next); } catch (e) {}
+        });
+      });
+      var menuBtn = document.querySelector("[data-menu-toggle]");
+      var menu = document.getElementById("mobile-menu");
+      if (menuBtn && menu) {
+        menuBtn.addEventListener("click", function () {
+          var open = menu.hasAttribute("hidden");
+          if (open) menu.removeAttribute("hidden"); else menu.setAttribute("hidden", "");
+          menuBtn.setAttribute("aria-expanded", String(open));
+        });
+        menu.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () { menu.setAttribute("hidden", ""); menuBtn.setAttribute("aria-expanded", "false"); });
+        });
+      }
+    </script>
+  </body>
+</html>
