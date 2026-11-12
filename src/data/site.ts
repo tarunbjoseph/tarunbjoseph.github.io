@@ -16,7 +16,7 @@ export const person = {
 
 export const workedAt = [
   { src: "assets/logos/vector_institute.png", alt: "Vector Institute" },
-  { src: "assets/logos/osprey_mark.png", alt: "Project OSPREY at SafeAlign AI" },
+  { src: "assets/logos/safealign.png", alt: "SafeAlign AI", square: true },
   { src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services" },
   { src: "assets/logos/university_of_toronto.svg", alt: "University of Toronto" },
 ];
@@ -215,7 +215,7 @@ export const projects: Project[] = [
 export type Job = {
   role: string;
   org: string;
-  logos?: { src: string; alt: string }[];
+  logos?: { src: string; alt: string; square?: boolean }[];
   period: string;
   points: string[];
 };
@@ -224,7 +224,7 @@ export const experience: Job[] = [
   {
     role: "Machine Learning Associate",
     org: "Vector Institute × SafeAlign AI",
-    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute" }, { src: "assets/logos/osprey_mark.png", alt: "Project OSPREY" }],
+    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute" }, { src: "assets/logos/safealign.png", alt: "SafeAlign AI", square: true }],
     period: "Aug 2026 – Present",
     points: [
       "Building runtime monitoring for multi-agent AI systems, designed for banks and other regulated firms, on-premises and in the cloud. Every agent step gets a PASS, ESCALATE or QUARANTINE verdict from fine-tuned small models, OPA policy rules and a knowledge-graph lookup.",

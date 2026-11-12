@@ -1,19 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-label="Tarun Joseph">
-  <style>
-    .fav-bg { fill: #0B0F17; stroke: rgba(111, 168, 232, 0.35); stroke-width: 36; }
-    .fav-t { fill: #FFFFFF; }
-    .fav-j { stroke: #6FA8E8; stroke-width: 140; stroke-linecap: round; fill: none; }
-    @media (prefers-color-scheme: light) {
-      .fav-bg { fill: #FFFFFF; stroke: rgba(29, 38, 50, 0.18); stroke-width: 36; }
-      .fav-t { fill: #1D2632; }
-      .fav-j { stroke: #3B76C8; }
-    }
-  </style>
-  <rect class="fav-bg" x="18" y="18" width="964" height="964" rx="220" />
-  <!-- Centered high-contrast monogram -->
-  <g transform="translate(18, 50)">
-    <rect class="fav-t" x="90" y="130" width="480" height="130" rx="12"></rect>
-    <rect class="fav-t" x="265" y="130" width="130" height="490" rx="12"></rect>
-    <path class="fav-j" d="M850 130 V450 A190 190 0 0 1 660 640"></path>
+  <rect width="1000" height="1000" rx="230" fill="#1b1b1a"/>
+  <g fill="#faf9f6">
+    <rect x="200" y="255" width="370" height="120" rx="14"/>
+    <rect x="325" y="255" width="120" height="490" rx="14"/>
   </g>
+  <path d="M 740 315 V 555 A 125 125 0 0 1 615 680"
+        fill="none" stroke="#6cbcb0" stroke-width="120" stroke-linecap="round"/>
 </svg>

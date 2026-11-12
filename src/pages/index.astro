@@ -52,7 +52,7 @@ const fmt = (v: number, d: number) => v.toLocaleString("en-CA", { minimumFractio
         <div class="reveal mt-14 flex flex-wrap items-center gap-x-4 gap-y-3" style="--d:380ms">
           <p class="mr-2 text-xs font-medium uppercase tracking-[0.14em] text-muted">Worked and studied at</p>
           {workedAt.map((l) => (
-            <span class="logo-plate h-12 w-28"><img src={u(l.src)} alt={l.alt} /></span>
+            <span class:list={["logo-plate h-12", l.square ? "w-12" : "w-28"]}><img src={u(l.src)} alt={l.alt} /></span>
           ))}
         </div>
       </div>
@@ -138,7 +138,7 @@ const fmt = (v: number, d: number) => v.toLocaleString("en-CA", { minimumFractio
                   {j.logos && (
                     <div class="flex items-center gap-2">
                       {j.logos.map((l) => (
-                        <span class="logo-plate h-11 w-[5.5rem]"><img src={u(l.src)} alt={l.alt} loading="lazy" /></span>
+                        <span class:list={["logo-plate h-11", l.square ? "w-11" : "w-[5.5rem]"]}><img src={u(l.src)} alt={l.alt} loading="lazy" /></span>
                       ))}
                     </div>
                   )}
