@@ -1,6 +1,6 @@
-# tarunjoseph_portfolio
+# tarunbjoseph.github.io
 
-Source for my personal site: https://tarunbjoseph.github.io/tarunjoseph_portfolio/
+Source for my personal site: https://tarunbjoseph.github.io/
 
 Built with [Astro](https://astro.build) and Tailwind CSS, deployed to GitHub Pages by the workflow in `.github/workflows/deploy.yml`.
 
@@ -15,6 +15,6 @@ All the text lives in `src/data/site.ts`. Projects, experience, education and ce
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/tarunjoseph_portfolio/
+npm run dev      # http://localhost:4321/
 npm run build    # static output in dist/
 ```
