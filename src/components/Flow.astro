@@ -1,0 +1,18 @@
+---
+// Vertical step diagram. Steps light up one after another (pure CSS, see global.css).
+interface Props { steps: string[]; label: string; }
+const { steps, label } = Astro.props;
+---
+<figure aria-label={label}>
+  <ol>
+    {steps.map((s, i) => (
+      <li>
+        <div class="flow-step flex items-center gap-3 rounded-md px-4 py-3" style={`--i:${i};--n:${steps.length}`}>
+          <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-line text-xs font-medium text-muted tabular-nums">{i + 1}</span>
+          <span class="text-[0.95rem] text-ink">{s}</span>
+        </div>
+        {i < steps.length - 1 && <div class="ml-7 h-4 w-px bg-line" aria-hidden="true"></div>}
+      </li>
+    ))}
+  </ol>
+</figure>

@@ -14,6 +14,13 @@ export const person = {
   cv: "assets/resumes/Tarun_Joseph_CV.pdf",
 };
 
+export const workedAt = [
+  { src: "assets/logos/vector_institute.png", alt: "Vector Institute" },
+  { src: "assets/logos/osprey_mark.png", alt: "Project OSPREY at SafeAlign AI" },
+  { src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services" },
+  { src: "assets/logos/university_of_toronto.svg", alt: "University of Toronto" },
+];
+
 export const intro = {
   headline: "I build AI agents, and the checks that keep them in line.",
   paragraphs: [
@@ -22,6 +29,90 @@ export const intro = {
   ],
   lookingFor: "Looking for AI engineering roles in Toronto from January 2027.",
 };
+
+// Every figure here comes from Tarun's resume. Do not add numbers that are not in his documents.
+export const stats = [
+  { value: 600000, decimals: 0, suffix: "", label: "employees on the learning platform I built chatbots and agents for at TCS" },
+  { value: 5, decimals: 0, suffix: "+ hrs", label: "saved per developer each week by my support-ticket agent" },
+  { value: 9.0, decimals: 1, suffix: "/10", label: "participant rating for the agentic AI bootcamp I led at Vector" },
+  { value: 3.8, decimals: 1, suffix: "/4.0", label: "GPA in my MEng at the University of Toronto" },
+];
+
+export const skills = [
+  { group: "Agents", items: ["Tool calling", "Multi-agent orchestration", "RAG", "Knowledge graphs", "MCP", "LangChain", "OPA policy rules", "Guardrails"] },
+  { group: "Fine-tuning and evaluation", items: ["QLoRA (Unsloth)", "PyTorch", "Hugging Face", "Macro-F1", "Calibration", "Cohen's kappa", "Grouped cross-validation"] },
+  { group: "AI governance", items: ["OWASP LLM Top 10", "MITRE ATLAS", "EU AI Act", "OSFI E-23"] },
+  { group: "Languages and infrastructure", items: ["Python", "SQL", "REST APIs", "FastAPI", "Docker", "Git", "GCP", "AWS", "Azure", "CI/CD"] },
+];
+
+// Work without a public demo. Each one gets a diagram instead of a link.
+export type CaseStudy = {
+  slug: string;
+  title: string;
+  context: string;
+  year: string;
+  why: string;
+  problem: string;
+  did: string[];
+  result?: string;
+  steps?: string[];
+  diagram?: "monitor";
+  link?: { label: string; href: string };
+};
+
+export const caseStudies: CaseStudy[] = [
+  {
+    slug: "runtime-monitoring",
+    title: "Runtime monitoring for AI agents",
+    context: "Project OSPREY · SafeAlign AI, through the Vector Institute",
+    year: "2026 – Present",
+    why: "Private repository",
+    problem:
+      "An agent that reads documents and calls tools can be steered by text hidden in what it reads. Ordinary monitoring watches latency and errors, and misses that.",
+    did: [
+      "Fine-tuned the two small language models in the pipeline with QLoRA: one screens user prompts for injection, the other names the kind of attack in a flagged tool output.",
+      "Built the training data with an LLM labeller, kept attacker goals and customers apart across train and test, and found and fixed label leakage in an earlier dataset.",
+      "Built the threat taxonomy and the crosswalk that links each threat to controls, regulations, OWASP and MITRE ATLAS.",
+    ],
+    diagram: "monitor",
+    link: { label: "See the public governance portal", href: "https://tarunbjoseph.github.io/osprey-portal/" },
+  },
+  {
+    slug: "ticket-agent",
+    title: "Support-ticket agent",
+    context: "Tata Consultancy Services",
+    year: "2025",
+    why: "Internal company system",
+    problem:
+      "Developers on a learning platform used by 600,000 employees were spending hours each week closing the same kinds of user tickets.",
+    did: [
+      "Built a proof of concept with Llama 3, then took it to an MVP over three sprints of feedback from the developers who used it.",
+      "The agent handles the repetitive tickets on its own; a chatbot helps developers close the rest.",
+    ],
+    result: "Saved each developer more than five hours a week.",
+    steps: ["A ticket comes in", "Semantic routing picks a path", "Vector-store memory adds context", "Tool calls to internal APIs do the fix", "Closed, or handed to a developer through the chatbot"],
+  },
+  {
+    slug: "minementor",
+    title: "MineMentor: when should an AI tutor help?",
+    context: "ECE1786, University of Toronto · two-person project",
+    year: "2026 – Present",
+    why: "Private course repository",
+    problem:
+      "A Minecraft tutor made of cooperating agents has to decide when to give a hint and when to let the player struggle. That decision is only as good as its read of the player.",
+    did: [
+      "I own calibration, data labelling, evaluation and testing.",
+      "Designed the protocol that checks the tutor's read of the player against what people see in screen recordings, with a second labeller and a held-out test.",
+    ],
+    steps: ["Record play sessions", "Cut into 30-second windows", "Two people label them blind", "Measure agreement (Cohen's kappa)", "Tune the detector's thresholds", "Score once on held-out sessions"],
+  },
+];
+
+export const alsoBuilt = [
+  { title: "RAG chatbots for coding help and Q&A", where: "TCS, 2023 – 2025", text: "GPT-3.5 and Llama 3 chatbots on the same 600,000-user learning platform." },
+  { title: "Web-scraping and OCR extraction tool", where: "TCS, 2023 – 2025", text: "Pulled structured data out of scanned documents and web pages." },
+  { title: "Deepfake detection hackathon challenge", where: "TCS, 2024", text: "Designed the challenge for a company-wide learning festival; about 5,000 people took part." },
+];
 
 export const now = [
   {
@@ -124,7 +215,7 @@ export const projects: Project[] = [
 export type Job = {
   role: string;
   org: string;
-  logo?: string;
+  logos?: { src: string; alt: string }[];
   period: string;
   points: string[];
 };
@@ -133,10 +224,10 @@ export const experience: Job[] = [
   {
     role: "Machine Learning Associate",
     org: "Vector Institute × SafeAlign AI",
-    logo: "assets/logos/vector_institute.png",
+    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute" }, { src: "assets/logos/osprey_mark.png", alt: "Project OSPREY" }],
     period: "Aug 2026 – Present",
     points: [
-      "Building runtime monitoring for multi-agent AI systems at financial clients, on-premises and in the cloud. Every agent step gets a PASS, ESCALATE or QUARANTINE verdict from fine-tuned small models, OPA policy rules and a knowledge-graph lookup.",
+      "Building runtime monitoring for multi-agent AI systems, designed for banks and other regulated firms, on-premises and in the cloud. Every agent step gets a PASS, ESCALATE or QUARANTINE verdict from fine-tuned small models, OPA policy rules and a knowledge-graph lookup.",
       "Fine-tuned two small language models with QLoRA: one names the kind of attack in a flagged tool output, the other screens user prompts for injection.",
       "Built the threat taxonomy and the crosswalk that links each threat to controls, regulations, OWASP and MITRE ATLAS, and found and fixed label leakage in an earlier dataset.",
     ],
@@ -144,7 +235,7 @@ export const experience: Job[] = [
   {
     role: "AI Program Design and Delivery Intern",
     org: "Vector Institute",
-    logo: "assets/logos/vector_institute.png",
+    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute" }],
     period: "May – Aug 2026",
     points: [
       "Led delivery of the Agentic AI Forecasting and Evaluation bootcamp (9.0/10 participant rating) for industry teams from CIBC, PwC and Roche.",
@@ -154,7 +245,7 @@ export const experience: Job[] = [
   {
     role: "Machine Learning Engineer",
     org: "Tata Consultancy Services",
-    logo: "assets/logos/tcs_logo.svg",
+    logos: [{ src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services" }],
     period: "Jan 2023 – May 2025",
     points: [
       "Deployed GPT-3.5 and Llama 3 RAG chatbots and AI agents on an internal learning platform used by 600,000 employees.",
@@ -165,7 +256,7 @@ export const experience: Job[] = [
   {
     role: "Data Engineer and Data Analyst",
     org: "Tata Consultancy Services",
-    logo: "assets/logos/tcs_logo.svg",
+    logos: [{ src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services" }],
     period: "Jan – Dec 2022",
     points: [
       "Built PL/SQL pipelines, Informatica ETL and Tableau reporting for talent-development programs, cutting manual reporting effort by about half.",
@@ -175,12 +266,12 @@ export const experience: Job[] = [
 ];
 
 export const teaching = [
-  { role: "Teaching Assistant", org: "University of Toronto", period: "2025 – Present", text: "MIE429 Machine Intelligence Capstone Design, APS106 Fundamentals of Computer Programming (500+ students) and MIE1628 Cloud-Based Big Data Analytics." },
-  { role: "Subject Matter Expert, Corporate Training", org: "Tata Consultancy Services", period: "2023 – 2025", text: "Taught AI, NLP, generative AI and data science programs across the company." },
-  { role: "Lead Trainer and Mentor", org: "TATA ProEngage, SURE Trust", period: "2025", text: "Ran a six-month Python and machine learning bootcamp for 20 final-year CS and IT students." },
-  { role: "VP of Professional Development", org: "MIE Graduate Student Association", period: "2025 – Present", text: "Industry events and professional development for MIE graduate students." },
-  { role: "Departmental Steward", org: "CUPE 3902 Unit 1", period: "2025 – Present", text: "Liaison between the union and the department." },
-  { role: "Academic Support Volunteer", org: "Make A Difference", period: "2019 – 2021", text: "Tutored children in shelter homes in Math and English." },
+  { role: "Teaching Assistant", logo: "assets/logos/university_of_toronto.svg", org: "University of Toronto", period: "2025 – Present", text: "MIE429 Machine Intelligence Capstone Design, APS106 Fundamentals of Computer Programming (500+ students) and MIE1628 Cloud-Based Big Data Analytics." },
+  { role: "Subject Matter Expert, Corporate Training", logo: "assets/logos/tcs_logo.svg", org: "Tata Consultancy Services", period: "2023 – 2025", text: "Taught AI, NLP, generative AI and data science programs across the company." },
+  { role: "Lead Trainer and Mentor", logo: "assets/logos/sure_trust_logo.png", org: "TATA ProEngage, SURE Trust", period: "2025", text: "Ran a six-month Python and machine learning bootcamp for 20 final-year CS and IT students." },
+  { role: "VP of Professional Development", logo: "assets/logos/university_of_toronto.svg", org: "MIE Graduate Student Association", period: "2025 – Present", text: "Industry events and professional development for MIE graduate students." },
+  { role: "Departmental Steward", logo: "", org: "CUPE 3902 Unit 1", period: "2025 – Present", text: "Liaison between the union and the department." },
+  { role: "Academic Support Volunteer", logo: "assets/logos/make_a_difference_logo.png", org: "Make A Difference", period: "2019 – 2021", text: "Tutored children in shelter homes in Math and English." },
 ];
 
 export const education = [
@@ -203,10 +294,10 @@ export const education = [
 ];
 
 export const certifications = [
-  { name: "Generative AI Leader", issuer: "Google", year: "2026" },
-  { name: "AWS Certified AI Practitioner", issuer: "Amazon Web Services", year: "2024" },
-  { name: "Azure Data Scientist Associate", issuer: "Microsoft", year: "2024" },
-  { name: "Generative AI and Large Language Models", issuer: "IIM Bangalore", year: "2024" },
-  { name: "AI4ICPS Certificate Program", issuer: "IIT Kharagpur", year: "2024" },
-  { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", year: "2023" },
+  { name: "Generative AI Leader", logo: "assets/logos/google_cert.svg", issuer: "Google", year: "2026" },
+  { name: "AWS Certified AI Practitioner", logo: "assets/logos/aws_certified.svg", issuer: "Amazon Web Services", year: "2024" },
+  { name: "Azure Data Scientist Associate", logo: "assets/logos/azure_certified.svg", issuer: "Microsoft", year: "2024" },
+  { name: "Generative AI and Large Language Models", logo: "assets/logos/iimb_logo.svg", issuer: "IIM Bangalore", year: "2024" },
+  { name: "AI4ICPS Certificate Program", logo: "assets/logos/iit_logo.svg", issuer: "IIT Kharagpur", year: "2024" },
+  { name: "AWS Certified Cloud Practitioner", logo: "assets/logos/aws_certified.svg", issuer: "Amazon Web Services", year: "2023" },
 ];

@@ -5,14 +5,20 @@ const { project: p, index } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const flip = index % 2 === 1;
 ---
-<article class="grid items-start gap-8 md:grid-cols-12 md:gap-12">
+<article class="reveal grid items-start gap-8 md:grid-cols-12 md:gap-12">
   <a
     href={p.links[0].href}
     target="_blank"
     rel="noopener noreferrer"
-    class:list={["group block overflow-hidden rounded-lg border border-line bg-card md:col-span-7", flip && "md:order-2"]}
+    class:list={["shot-frame block overflow-hidden rounded-lg border border-line bg-card md:col-span-7", flip && "md:order-2"]}
     aria-label={`${p.links[0].label}: ${p.title}`}
   >
+    <div class="flex items-center gap-1.5 border-b border-line px-3 py-2" aria-hidden="true">
+      <span class="h-2 w-2 rounded-full bg-line"></span>
+      <span class="h-2 w-2 rounded-full bg-line"></span>
+      <span class="h-2 w-2 rounded-full bg-line"></span>
+      <span class="ml-2 truncate text-[0.7rem] text-muted">{p.links[0].href.replace("https://", "")}</span>
+    </div>
     <img
       src={`${base}/${p.image}`}
       alt={p.imageAlt}
@@ -20,7 +26,7 @@ const flip = index % 2 === 1;
       height="750"
       loading="lazy"
       decoding="async"
-      class="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015]"
+      class="aspect-[16/10] w-full object-cover object-top"
     />
   </a>
   <div class:list={["md:col-span-5", flip && "md:order-1"]}>
@@ -39,8 +45,8 @@ const flip = index % 2 === 1;
       </ul>
     </details>
 
-    <ul class="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted" aria-label="Tools">
-      {p.tools.map((t, i) => <li>{t}{i < p.tools.length - 1 && <span class="ml-3 text-line" aria-hidden="true">/</span>}</li>)}
+    <ul class="mt-5 flex flex-wrap gap-1.5 text-xs text-muted" aria-label="Tools">
+      {p.tools.map((t) => <li class="rounded-full border border-line px-2.5 py-1">{t}</li>)}
     </ul>
 
     <div class="mt-6 flex flex-wrap items-center gap-3">
