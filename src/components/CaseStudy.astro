@@ -2,12 +2,18 @@
 import type { CaseStudy } from "../data/site";
 import Flow from "./Flow.astro";
 import Monitor from "./Monitor.astro";
+import LogoPlate from "./LogoPlate.astro";
 interface Props { item: CaseStudy; }
 const { item: c } = Astro.props;
 ---
 <article class="reveal rounded-xl border border-line bg-card p-6 sm:p-8 md:p-10">
   <div class="grid gap-10 md:grid-cols-12">
     <div class="md:col-span-5">
+      {c.logos && (
+        <div class="mb-4 flex flex-wrap items-center gap-2">
+          {c.logos.map((l) => <LogoPlate src={l.src} alt={l.alt} url={l.url} size="h-10 w-24" />)}
+        </div>
+      )}
       <p class="text-xs font-medium uppercase tracking-[0.12em] text-muted">{c.context}</p>
       <h3 class="mt-2 font-serif text-3xl leading-tight font-medium tracking-tight text-ink">{c.title}</h3>
       <p class="mt-3 flex flex-wrap items-center gap-2 text-xs text-muted">

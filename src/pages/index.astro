@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import LogoPlate from "../components/LogoPlate.astro";
 import CaseStudy from "../components/CaseStudy.astro";
 import { person, intro, workedAt, stats, now, projects, caseStudies, alsoBuilt, skills, experience, teaching, education, certifications } from "../data/site";
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -51,9 +52,7 @@ const fmt = (v: number, d: number) => v.toLocaleString("en-CA", { minimumFractio
         </div>
         <div class="reveal mt-14 flex flex-wrap items-center gap-x-4 gap-y-3" style="--d:380ms">
           <p class="mr-2 text-xs font-medium uppercase tracking-[0.14em] text-muted">Worked and studied at</p>
-          {workedAt.map((l) => (
-            <span class:list={["logo-plate h-12", l.square ? "w-12" : "w-28"]}><img src={u(l.src)} alt={l.alt} /></span>
-          ))}
+          {workedAt.map((l) => <LogoPlate src={l.src} alt={l.alt} url={l.url} lazy={false} />)}
         </div>
       </div>
     </section>
@@ -137,9 +136,7 @@ const fmt = (v: number, d: number) => v.toLocaleString("en-CA", { minimumFractio
                   </div>
                   {j.logos && (
                     <div class="flex items-center gap-2">
-                      {j.logos.map((l) => (
-                        <span class:list={["logo-plate h-11", l.square ? "w-11" : "w-[5.5rem]"]}><img src={u(l.src)} alt={l.alt} loading="lazy" /></span>
-                      ))}
+                      {j.logos.map((l) => <LogoPlate src={l.src} alt={l.alt} url={l.url} size="h-11 w-[5.5rem]" />)}
                     </div>
                   )}
                 </div>
@@ -178,7 +175,7 @@ const fmt = (v: number, d: number) => v.toLocaleString("en-CA", { minimumFractio
             <div class="mt-5 space-y-8">
               {education.map((e) => (
                 <div class="flex gap-4">
-                  <span class="logo-plate h-14 w-20 shrink-0"><img src={u(e.logo)} alt="" loading="lazy" /></span>
+                  <LogoPlate src={e.logo} alt={e.school} url={e.url} size="h-14 w-20 shrink-0" />
                   <div>
                     <p class="font-semibold text-ink">{e.degree}</p>
                     <p class="text-sm text-muted">{e.school} · {e.period}</p>
@@ -207,8 +204,8 @@ const fmt = (v: number, d: number) => v.toLocaleString("en-CA", { minimumFractio
               {teaching.map((t) => (
                 <li class="flex gap-4">
                   {t.logo
-                    ? <span class="logo-plate h-11 w-16 shrink-0"><img src={u(t.logo)} alt="" loading="lazy" /></span>
-                    : <span class="logo-plate h-11 w-16 shrink-0 text-[0.6rem] font-semibold text-neutral-600" aria-hidden="true">CUPE</span>}
+                    ? <LogoPlate src={t.logo} alt={t.org} url={t.url} size="h-11 w-16 shrink-0" />
+                    : <a href={t.url} target="_blank" rel="noopener noreferrer" class="logo-plate h-11 w-16 shrink-0 text-[0.6rem] font-semibold text-neutral-600" title={t.org}>CUPE</a>}
                   <div class="grow">
                     <div class="flex items-baseline justify-between gap-4">
                       <p class="font-semibold text-ink">{t.role}</p>

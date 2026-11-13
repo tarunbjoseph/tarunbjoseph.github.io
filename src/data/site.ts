@@ -15,10 +15,10 @@ export const person = {
 };
 
 export const workedAt = [
-  { src: "assets/logos/vector_institute.png", alt: "Vector Institute" },
-  { src: "assets/logos/safealign.png", alt: "SafeAlign AI", square: true },
-  { src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services" },
-  { src: "assets/logos/university_of_toronto.svg", alt: "University of Toronto" },
+  { src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" },
+  { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/" },
+  { src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services", url: "https://www.tcs.com/" },
+  { src: "assets/logos/university_of_toronto.svg", alt: "University of Toronto", url: "https://www.utoronto.ca/" },
 ];
 
 export const intro = {
@@ -34,7 +34,7 @@ export const intro = {
 export const stats = [
   { value: 600000, decimals: 0, suffix: "", label: "employees on the learning platform I built chatbots and agents for at TCS" },
   { value: 5, decimals: 0, suffix: "+ hrs", label: "saved per developer each week by my support-ticket agent" },
-  { value: 9.0, decimals: 1, suffix: "/10", label: "participant rating for the agentic AI bootcamp I led at Vector" },
+  { value: 9.0, decimals: 1, suffix: "/10", label: "participant rating for the agentic AI bootcamp I helped lead at Vector" },
   { value: 3.8, decimals: 1, suffix: "/4.0", label: "GPA in my MEng at the University of Toronto" },
 ];
 
@@ -46,6 +46,8 @@ export const skills = [
 ];
 
 // Work without a public demo. Each one gets a diagram instead of a link.
+export type Logo = { src: string; alt: string; url?: string };
+
 export type CaseStudy = {
   slug: string;
   title: string;
@@ -57,6 +59,7 @@ export type CaseStudy = {
   result?: string;
   steps?: string[];
   diagram?: "monitor";
+  logos?: Logo[];
   link?: { label: string; href: string };
 };
 
@@ -75,6 +78,7 @@ export const caseStudies: CaseStudy[] = [
       "Built the threat taxonomy and the crosswalk that links each threat to controls, regulations, OWASP and MITRE ATLAS.",
     ],
     diagram: "monitor",
+    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" }, { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/" }],
     link: { label: "See the public governance portal", href: "https://tarunbjoseph.github.io/osprey-portal/" },
   },
   {
@@ -90,6 +94,7 @@ export const caseStudies: CaseStudy[] = [
       "The agent handles the repetitive tickets on its own; a chatbot helps developers close the rest.",
     ],
     result: "Saved each developer more than five hours a week.",
+    logos: [{ src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services", url: "https://www.tcs.com/" }],
     steps: ["A ticket comes in", "Semantic routing picks a path", "Vector-store memory adds context", "Tool calls to internal APIs do the fix", "Closed, or handed to a developer through the chatbot"],
   },
   {
@@ -104,6 +109,7 @@ export const caseStudies: CaseStudy[] = [
       "I own calibration, data labelling, evaluation and testing.",
       "Designed the protocol that checks the tutor's read of the player against what people see in screen recordings, with a second labeller and a held-out test.",
     ],
+    logos: [{ src: "assets/logos/university_of_toronto.svg", alt: "University of Toronto", url: "https://www.utoronto.ca/" }],
     steps: ["Record play sessions", "Cut into 30-second windows", "Two people label them blind", "Measure agreement (Cohen's kappa)", "Tune the detector's thresholds", "Score once on held-out sessions"],
   },
 ];
@@ -144,6 +150,7 @@ export type Project = {
   how: string[];
   tools: string[];
   links: { label: string; href: string }[];
+  logos?: Logo[];
   note?: string;
 };
 
@@ -163,6 +170,7 @@ export const projects: Project[] = [
       "Framework versions are pinned in one place, so upgrading a framework produces an exact list of anchors to re-check.",
       "Each anchor carries a verification state (verified, pending, gap or superseded), so readers can tell which references are safe to quote.",
     ],
+    logos: [{ src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/" }],
     tools: ["Astro", "Zod schemas", "YAML", "Node.js", "GitHub Pages"],
     links: [
       { label: "Visit the site", href: "https://tarunbjoseph.github.io/osprey-portal/" },
@@ -184,6 +192,7 @@ export const projects: Project[] = [
       "A Conformer encoder picks up the quick finger movements, a Transformer decoder predicts the letters one by one, and beam search chooses the most likely spelling.",
       "A language model then turns the raw letters into the sentence the signer meant, using the chosen context, and the result is read out as audio.",
     ],
+    logos: [{ src: "assets/logos/university_of_toronto.svg", alt: "University of Toronto", url: "https://www.utoronto.ca/" }],
     tools: ["PyTorch", "MediaPipe", "Conformer-Transformer", "Groq LLM", "Gradio", "Hugging Face Spaces"],
     links: [
       { label: "Try the app", href: "https://huggingface.co/spaces/TarunJoseph101/MIE1517_ASL_Project" },
@@ -215,7 +224,7 @@ export const projects: Project[] = [
 export type Job = {
   role: string;
   org: string;
-  logos?: { src: string; alt: string; square?: boolean }[];
+  logos?: Logo[];
   period: string;
   points: string[];
 };
@@ -224,7 +233,7 @@ export const experience: Job[] = [
   {
     role: "Machine Learning Associate",
     org: "Vector Institute × SafeAlign AI",
-    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute" }, { src: "assets/logos/safealign.png", alt: "SafeAlign AI", square: true }],
+    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" }, { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/" }],
     period: "Aug 2026 – Present",
     points: [
       "Building runtime monitoring for multi-agent AI systems, designed for banks and other regulated firms, on-premises and in the cloud. Every agent step gets a PASS, ESCALATE or QUARANTINE verdict from fine-tuned small models, OPA policy rules and a knowledge-graph lookup.",
@@ -235,7 +244,7 @@ export const experience: Job[] = [
   {
     role: "AI Program Design and Delivery Intern",
     org: "Vector Institute",
-    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute" }],
+    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" }],
     period: "May – Aug 2026",
     points: [
       "Led delivery of the Agentic AI Forecasting and Evaluation bootcamp (9.0/10 participant rating) for industry teams from CIBC, PwC and Roche.",
@@ -245,7 +254,7 @@ export const experience: Job[] = [
   {
     role: "Machine Learning Engineer",
     org: "Tata Consultancy Services",
-    logos: [{ src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services" }],
+    logos: [{ src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services", url: "https://www.tcs.com/" }],
     period: "Jan 2023 – May 2025",
     points: [
       "Deployed GPT-3.5 and Llama 3 RAG chatbots and AI agents on an internal learning platform used by 600,000 employees.",
@@ -256,7 +265,7 @@ export const experience: Job[] = [
   {
     role: "Data Engineer and Data Analyst",
     org: "Tata Consultancy Services",
-    logos: [{ src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services" }],
+    logos: [{ src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services", url: "https://www.tcs.com/" }],
     period: "Jan – Dec 2022",
     points: [
       "Built PL/SQL pipelines, Informatica ETL and Tableau reporting for talent-development programs, cutting manual reporting effort by about half.",
@@ -266,12 +275,12 @@ export const experience: Job[] = [
 ];
 
 export const teaching = [
-  { role: "Teaching Assistant", logo: "assets/logos/university_of_toronto.svg", org: "University of Toronto", period: "2025 – Present", text: "MIE429 Machine Intelligence Capstone Design, APS106 Fundamentals of Computer Programming (500+ students) and MIE1628 Cloud-Based Big Data Analytics." },
-  { role: "Subject Matter Expert, Corporate Training", logo: "assets/logos/tcs_logo.svg", org: "Tata Consultancy Services", period: "2023 – 2025", text: "Taught AI, NLP, generative AI and data science programs across the company." },
-  { role: "Lead Trainer and Mentor", logo: "assets/logos/sure_trust_logo.png", org: "TATA ProEngage, SURE Trust", period: "2025", text: "Ran a six-month Python and machine learning bootcamp for 20 final-year CS and IT students." },
-  { role: "VP of Professional Development", logo: "assets/logos/university_of_toronto.svg", org: "MIE Graduate Student Association", period: "2025 – Present", text: "Industry events and professional development for MIE graduate students." },
-  { role: "Departmental Steward", logo: "", org: "CUPE 3902 Unit 1", period: "2025 – Present", text: "Liaison between the union and the department." },
-  { role: "Academic Support Volunteer", logo: "assets/logos/make_a_difference_logo.png", org: "Make A Difference", period: "2019 – 2021", text: "Tutored children in shelter homes in Math and English." },
+  { role: "Teaching Assistant", logo: "assets/logos/university_of_toronto.svg", url: "https://www.utoronto.ca/", org: "University of Toronto", period: "2025 – Present", text: "MIE429 Machine Intelligence Capstone Design, APS106 Fundamentals of Computer Programming (500+ students) and MIE1628 Cloud-Based Big Data Analytics." },
+  { role: "Subject Matter Expert, Corporate Training", logo: "assets/logos/tcs_logo.svg", url: "https://www.tcs.com/", org: "Tata Consultancy Services", period: "2023 – 2025", text: "Taught AI, NLP, generative AI and data science programs across the company." },
+  { role: "Lead Trainer and Mentor", logo: "assets/logos/sure_trust_logo.png", url: "https://www.suretrustforruralyouth.com/", org: "TATA ProEngage, SURE Trust", period: "2025", text: "Ran a six-month Python and machine learning bootcamp for 20 final-year CS and IT students." },
+  { role: "VP of Professional Development", logo: "assets/logos/university_of_toronto.svg", url: "https://www.mie.utoronto.ca/", org: "MIE Graduate Student Association", period: "2025 – Present", text: "Industry events and professional development for MIE graduate students." },
+  { role: "Departmental Steward", logo: "", url: "https://www.cupe3902.org/", org: "CUPE 3902 Unit 1", period: "2025 – Present", text: "Liaison between the union and the department." },
+  { role: "Academic Support Volunteer", logo: "assets/logos/make_a_difference_logo.png", url: "https://www.makeadiff.in/", org: "Make A Difference", period: "2019 – 2021", text: "Tutored children in shelter homes in Math and English." },
 ];
 
 export const education = [
@@ -279,6 +288,7 @@ export const education = [
     degree: "MEng, Industrial Engineering",
     school: "University of Toronto",
     logo: "assets/logos/university_of_toronto.svg",
+    url: "https://www.utoronto.ca/",
     period: "2025 – Dec 2026",
     detail: "GPA 3.8/4.0. Emphasis in Data Analytics and Machine Learning.",
     courses: "Statistical Learning (A+), Deep Learning (A), Foundations of Data Analytics and ML (A), Reinforcement Learning, Applications of NLP (in progress)",
@@ -287,6 +297,7 @@ export const education = [
     degree: "B.Tech, Industrial Engineering",
     school: "College of Engineering Trivandrum",
     logo: "assets/logos/cet_logo.jpg",
+    url: "https://www.cet.ac.in/",
     period: "2017 – 2021",
     detail: "First Class with Distinction (8.0/10 CGPA).",
     courses: "Operations Research, Data Analysis with R and Python",
