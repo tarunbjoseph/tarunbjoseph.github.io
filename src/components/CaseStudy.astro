@@ -11,7 +11,7 @@ const { item: c } = Astro.props;
     <div class="md:col-span-5">
       {c.logos && (
         <div class="mb-4 flex flex-wrap items-center gap-2">
-          {c.logos.map((l) => <LogoPlate src={l.src} alt={l.alt} url={l.url} size={l.square ? "h-10 w-10" : "h-10 w-24"} />)}
+          {c.logos.map((l) => <LogoPlate src={l.src} alt={l.alt} url={l.url} size={l.square ? "h-14 w-14" : "h-10 w-24"} bare={l.square} />)}
         </div>
       )}
       <p class="text-xs font-medium uppercase tracking-[0.12em] text-muted">{c.context}</p>

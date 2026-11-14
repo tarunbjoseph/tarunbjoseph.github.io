@@ -33,7 +33,7 @@ const flip = index % 2 === 1;
   <div class:list={["md:col-span-5", flip && "md:order-1"]}>
     {p.logos && (
       <div class="mb-3 flex flex-wrap items-center gap-2">
-        {p.logos.map((l) => <LogoPlate src={l.src} alt={l.alt} url={l.url} size={l.square ? "h-10 w-10" : "h-10 w-24"} />)}
+        {p.logos.map((l) => <LogoPlate src={l.src} alt={l.alt} url={l.url} size={l.square ? "h-14 w-14" : "h-10 w-24"} bare={l.square} />)}
       </div>
     )}
     <p class="text-xs font-medium uppercase tracking-[0.12em] text-muted">{p.context} · {p.year}</p>

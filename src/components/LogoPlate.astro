@@ -1,16 +1,16 @@
 ---
 // A logo on a white plate. Becomes a link when the organisation has a site.
-interface Props { src: string; alt: string; url?: string; size?: string; lazy?: boolean }
-const { src, alt, url, size = "h-12 w-28", lazy = true } = Astro.props;
+interface Props { src: string; alt: string; url?: string; size?: string; lazy?: boolean; bare?: boolean }
+const { src, alt, url, size = "h-12 w-28", lazy = true, bare = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const img = { src: `${base}/${src}`, alt, loading: lazy ? "lazy" : "eager" } as const;
 ---
 {url ? (
-  <a href={url} target="_blank" rel="noopener noreferrer" class:list={["logo-plate", size]} title={alt} aria-label={`${alt} (opens in a new tab)`}>
+  <a href={url} target="_blank" rel="noopener noreferrer" class:list={["logo-plate", bare && "logo-bare", size]} title={alt} aria-label={`${alt} (opens in a new tab)`}>
     <img src={img.src} alt={img.alt} loading={img.loading} />
   </a>
 ) : (
-  <span class:list={["logo-plate", size]} title={alt}>
+  <span class:list={["logo-plate", bare && "logo-bare", size]} title={alt}>
     <img src={img.src} alt={img.alt} loading={img.loading} />
   </span>
 )}
