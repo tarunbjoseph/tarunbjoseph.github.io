@@ -16,7 +16,7 @@ export const person = {
 
 export const workedAt = [
   { src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" },
-  { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/" },
+  { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/", square: true },
   { src: "assets/logos/tcs_logo.svg", alt: "Tata Consultancy Services", url: "https://www.tcs.com/" },
   { src: "assets/logos/university_of_toronto.svg", alt: "University of Toronto", url: "https://www.utoronto.ca/" },
 ];
@@ -46,7 +46,7 @@ export const skills = [
 ];
 
 // Work without a public demo. Each one gets a diagram instead of a link.
-export type Logo = { src: string; alt: string; url?: string };
+export type Logo = { src: string; alt: string; url?: string; square?: boolean };
 
 export type CaseStudy = {
   slug: string;
@@ -78,7 +78,7 @@ export const caseStudies: CaseStudy[] = [
       "Built the threat taxonomy and the crosswalk that links each threat to controls, regulations, OWASP and MITRE ATLAS.",
     ],
     diagram: "monitor",
-    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" }, { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/" }],
+    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" }, { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/", square: true }],
     link: { label: "See the public governance portal", href: "https://tarunbjoseph.github.io/osprey-portal/" },
   },
   {
@@ -170,7 +170,7 @@ export const projects: Project[] = [
       "Framework versions are pinned in one place, so upgrading a framework produces an exact list of anchors to re-check.",
       "Each anchor carries a verification state (verified, pending, gap or superseded), so readers can tell which references are safe to quote.",
     ],
-    logos: [{ src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/" }],
+    logos: [{ src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/", square: true }],
     tools: ["Astro", "Zod schemas", "YAML", "Node.js", "GitHub Pages"],
     links: [
       { label: "Visit the site", href: "https://tarunbjoseph.github.io/osprey-portal/" },
@@ -233,7 +233,7 @@ export const experience: Job[] = [
   {
     role: "Machine Learning Associate",
     org: "Vector Institute × SafeAlign AI",
-    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" }, { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/" }],
+    logos: [{ src: "assets/logos/vector_institute.png", alt: "Vector Institute", url: "https://vectorinstitute.ai/" }, { src: "assets/logos/safealign.png", alt: "SafeAlign AI", url: "https://safealignai.io/", square: true }],
     period: "Aug 2026 – Present",
     points: [
       "Building runtime monitoring for multi-agent AI systems, designed for banks and other regulated firms, on-premises and in the cloud. Every agent step gets a PASS, ESCALATE or QUARANTINE verdict from fine-tuned small models, OPA policy rules and a knowledge-graph lookup.",
@@ -279,7 +279,7 @@ export const teaching = [
   { role: "Subject Matter Expert, Corporate Training", logo: "assets/logos/tcs_logo.svg", url: "https://www.tcs.com/", org: "Tata Consultancy Services", period: "2023 – 2025", text: "Taught AI, NLP, generative AI and data science programs across the company." },
   { role: "Lead Trainer and Mentor", logo: "assets/logos/sure_trust_logo.png", url: "https://www.suretrustforruralyouth.com/", org: "TATA ProEngage, SURE Trust", period: "2025", text: "Ran a six-month Python and machine learning bootcamp for 20 final-year CS and IT students." },
   { role: "VP of Professional Development", logo: "assets/logos/university_of_toronto.svg", url: "https://www.mie.utoronto.ca/", org: "MIE Graduate Student Association", period: "2025 – Present", text: "Industry events and professional development for MIE graduate students." },
-  { role: "Departmental Steward", logo: "", url: "https://www.cupe3902.org/", org: "CUPE 3902 Unit 1", period: "2025 – Present", text: "Liaison between the union and the department." },
+  { role: "Departmental Steward", logo: "assets/logos/cupe_3902.png", url: "https://www.cupe3902.org/", org: "CUPE 3902 Unit 1", period: "2025 – Present", text: "Liaison between the union and the department." },
   { role: "Academic Support Volunteer", logo: "assets/logos/make_a_difference_logo.png", url: "https://www.makeadiff.in/", org: "Make A Difference", period: "2019 – 2021", text: "Tutored children in shelter homes in Math and English." },
 ];
 
